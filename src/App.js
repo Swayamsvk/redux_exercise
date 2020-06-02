@@ -1,16 +1,19 @@
 import React from 'react';
 import {BrowserRouter as Router,Route} from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css"
+import { Provider } from 'react-redux';
 
 import Navbar from "./components/navbar.component";
 import ExercisesList from "./components/exercises-list.component";
 import EditExercise from "./components/edit-exercise.component";
 import CreateExercise from "./components/create-exercise.component";
 import CreateUser from "./components/create-user.component";
+import store from './store'
 
 
 function App() {
   return (
+    <Provider store={store}>
     <Router>
       <div className="container">
     <Navbar />
@@ -21,7 +24,7 @@ function App() {
         <Route path="/user" component={CreateUser} />
       </div>
     </Router> 
-    
+    </Provider>
   );
 }
 
