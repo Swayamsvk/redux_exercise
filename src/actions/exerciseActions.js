@@ -1,4 +1,5 @@
-import { FETCH_EXERCISES} from '../actions/types';
+import { FETCH_EXERCISES,NEW_EXERCISE } from '../actions/types';
+
 
 export const fetchExercises = () => dispatch => {
    
@@ -9,4 +10,20 @@ export const fetchExercises = () => dispatch => {
           payload: exercises  
         }));
     
+}
+
+export const createExercises = (exerciseData) => dispatch => {
+    console.log("action called");
+    fetch('http://localhost:5000/exercises/add',{
+      method: 'POST',
+      headers: {
+        'content-type':'application/json'
+      },
+      body:JSON.stringify(exerciseData)
+    })
+    .then(res => res.json())
+    .then(exercise =>  dispatch({
+      type: NEW_EXERCISE,
+      payload: exercise  
+    }));
 }

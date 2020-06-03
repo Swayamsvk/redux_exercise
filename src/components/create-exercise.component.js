@@ -2,8 +2,11 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { createExercises } from '../actions/exerciseActions';
 
-export default class CreateExercises extends Component{
+class CreateExercises extends Component{
     constructor(props){
         super(props);
 
@@ -71,10 +74,10 @@ export default class CreateExercises extends Component{
 
         console.log(exercise);
 
-        axios.post('http://localhost:5000/exercises/add',exercise)
-            .then(res => console.log(res.data))
+        // axios.post('http://localhost:5000/exercises/add',exercise)
+        //     .then(res => console.log(res.data))
 
-
+        this.props.createExercises(exercise);
         window.location = '/';
     }
     
@@ -138,3 +141,9 @@ export default class CreateExercises extends Component{
         )
     }
 }
+
+CreateExercises.propTypes = {
+    createExercises: PropTypes.func.isRequired
+}
+
+export default connect(null,{ createExercises })(CreateExercises)

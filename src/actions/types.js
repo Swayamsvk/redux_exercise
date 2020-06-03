@@ -1,1 +1,2 @@
 export const FETCH_EXERCISES = 'FETCH_EXERCISES';
+export const NEW_EXERCISE = 'NEW_EXERCISE';

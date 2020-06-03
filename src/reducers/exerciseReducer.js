@@ -1,4 +1,5 @@
-import { FETCH_EXERCISES} from '../actions/types';
+import { FETCH_EXERCISES,NEW_EXERCISE} from '../actions/types';
+
 
 const initialState ={
     items: [],
@@ -11,6 +12,11 @@ export default function(state = initialState,action) {
             return {
                 ...state,
                 items: action.payload
+            }
+        case NEW_EXERCISE:
+            return {
+                ...state,
+                item:action.payload
             }
         default: 
         return state;
