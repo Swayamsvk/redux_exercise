@@ -1,4 +1,4 @@
-import { FETCH_EXERCISES,NEW_EXERCISE} from '../actions/types';
+import { FETCH_EXERCISES,NEW_EXERCISE,DELETE_EXERCISE} from '../actions/types';
 
 
 const initialState ={
@@ -18,6 +18,12 @@ export default function(state = initialState,action) {
                 ...state,
                 item:action.payload
             }
+        case DELETE_EXERCISE:
+            return {
+               ...state,
+               item:action.payload
+            }
+            
         default: 
         return state;
     }

@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import axios from 'axios'; 
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux'; 
-import { fetchExercises } from '../actions/exerciseActions';
+import { fetchExercises,deleteExercises } from '../actions/exerciseActions';
 
 
 const Exercise = props => (
@@ -37,10 +37,13 @@ class ExercisesList extends Component{
     }
 
     deleteExercise(id) {
-        axios.delete('http://localhost:5000/exercises/'+id)
-            .then(res => console.log(res.data));
-        this.setState({
-            exercises:this.props.exercises.filter(el => el._id !==id)
+        // axios.delete('http://localhost:5000/exercises/'+id)
+        //     .then(res => console.log(res.data));
+        // this.setState({
+        //     exercises:this.props.exercises.filter(el => el._id !==id)
+        // })
+        this.props.deleteExercises((id)=>{
+            this.props.exercises.filter(el => el._id !==id)
         })
     }
     exerciseList(){
@@ -74,11 +77,12 @@ class ExercisesList extends Component{
 
 ExercisesList.propTypes = {
     fetchExercises: PropTypes.func.isRequired,
-    exercises: PropTypes.array.isRequired
+    exercises: PropTypes.array.isRequired,
+    deleteExercises:PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
     exercises: state.exercises.items
 })
 
-export default connect(mapStateToProps,{ fetchExercises })(ExercisesList)
+export default connect(mapStateToProps,{ fetchExercises,deleteExercises })(ExercisesList)
