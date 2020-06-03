@@ -1,4 +1,4 @@
-import { FETCH_EXERCISES,NEW_EXERCISE } from '../actions/types';
+import { FETCH_EXERCISES,NEW_EXERCISE,EDIT_EXERCISE } from '../actions/types';
 
 
 export const fetchExercises = () => dispatch => {
