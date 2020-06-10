@@ -1,4 +1,4 @@
-import { FETCH_EXERCISES,NEW_EXERCISE,DELETE_EXERCISE} from '../actions/types';
+import { FETCH_EXERCISES,NEW_EXERCISE,DELETE_EXERCISE, EDIT_EXERCISE} from '../actions/types';
 
 
 const initialState ={
@@ -21,7 +21,11 @@ export default function(state = initialState,action) {
         case DELETE_EXERCISE:
             return {
                ...state,
-               item:action.payload
+               items:state.items.filter(item => item.id !== action.payload)
+            }
+        case EDIT_EXERCISE:
+            return {
+                items: state.items.map(item => item.id ===action.payload.id ? action.payload :item)
             }
             
         default: 

@@ -1,4 +1,4 @@
-import { FETCH_EXERCISES,NEW_EXERCISE,DELETE_EXERCISE } from '../actions/types';
+import { FETCH_EXERCISES,NEW_EXERCISE,DELETE_EXERCISE,EDIT_EXERCISE } from '../actions/types';
 
 
 export const fetchExercises = () => dispatch => {
@@ -31,14 +31,27 @@ export const createExercises = (exerciseData) => dispatch => {
 export const deleteExercises = (id) => dispatch => {
   console.log("action called");
   fetch(`http://localhost:5000/exercises/${id}`,{
-    method: 'delete',
-    headers: {
-      'content-type':'application/json'
-    },
+    method: 'DELETE'
   })
   .then(res => res.json())
   .then(id =>  dispatch({
     type: DELETE_EXERCISE,
     payload: id  
+  }));
+}
+
+export const editExercises = item => dispatch => {
+  console.log("action called");
+  fetch(`http://localhost:5000/exercises/update/${item._id}`,{
+    method: 'PUT',
+    body: JSON.stringify(item),
+    headers: {
+      'Content-Type':'application/json'
+    }
+  })
+  .then(res => res.json())
+  .then(data =>  dispatch({
+    type: EDIT_EXERCISE,
+    payload: data  
   }));
 }

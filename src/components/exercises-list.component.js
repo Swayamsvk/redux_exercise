@@ -42,9 +42,7 @@ class ExercisesList extends Component{
         // this.setState({
         //     exercises:this.props.exercises.filter(el => el._id !==id)
         // })
-        this.props.deleteExercises((id)=>{
-            this.props.exercises.filter(el => el._id !==id)
-        })
+        this.props.deleteExercises(id);
     }
     exerciseList(){
         return this.props.exercises.map(currentexercise => {
